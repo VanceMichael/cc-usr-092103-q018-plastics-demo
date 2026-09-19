@@ -1,0 +1,10 @@
+{
+  "domain": "plastics-demo",
+  "version": 1,
+  "facts": [
+    "展商现场演示机械设备",
+    "客户会了解设备性能并洽谈",
+    "展品包含塑料中空产品"
+  ],
+  "sample_id": "sample-018"
+}
