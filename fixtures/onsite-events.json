@@ -1,0 +1,36 @@
+[
+  { "action": "requestSlot", "key": "S1", "machineId": "MCH-01", "operatorId": "OP-01", "start": "2026-09-26T10:00:00Z", "end": "2026-09-26T10:30:00Z", "plannedParams": { "barrelTempC": 185, "clampForceKN": 1000, "cycleTimeS": 30 }, "at": "2026-09-26T09:30:00Z" },
+  { "action": "approveSlot", "slotKey": "S1", "approvedBy": "ORG-01", "at": "2026-09-26T09:35:00Z" },
+  { "action": "requestSlot", "key": "S2", "machineId": "MCH-01", "operatorId": "OP-01", "start": "2026-09-26T11:30:00Z", "end": "2026-09-26T12:00:00Z", "plannedParams": { "barrelTempC": 190, "clampForceKN": 1000, "cycleTimeS": 32 }, "at": "2026-09-26T09:40:00Z" },
+  { "action": "approveSlot", "slotKey": "S2", "approvedBy": "ORG-01", "at": "2026-09-26T09:41:00Z" },
+  { "action": "requestSlot", "key": "S3", "machineId": "MCH-02", "operatorId": "OP-02", "start": "2026-09-26T10:00:00Z", "end": "2026-09-26T10:40:00Z", "plannedParams": { "meltTempC": 210, "injectPressureMPa": 110 }, "at": "2026-09-26T09:45:00Z" },
+  { "action": "approveSlot", "slotKey": "S3", "approvedBy": "ORG-01", "at": "2026-09-26T09:46:00Z" },
+
+  { "action": "scan", "key": "SC1", "visitorId": "V-001", "machineId": "MCH-01", "at": "2026-09-26T10:02:00Z" },
+  { "action": "scan", "key": "SC1-DUP", "visitorId": "V-001", "machineId": "MCH-01", "at": "2026-09-26T10:03:00Z" },
+  { "action": "checkIn", "scanKey": "SC1", "slotKey": "S1", "at": "2026-09-26T10:05:00Z" },
+  { "action": "engagement", "key": "E-QA1", "type": "qa", "visitorId": "V-001", "slotKey": "S1", "at": "2026-09-26T10:08:00Z", "details": { "topic": "5L 桶壁厚均匀性", "answer": "型坯壁厚伺服闭环控制" } },
+  { "action": "engagement", "key": "E-SP1", "type": "sample", "visitorId": "V-001", "slotKey": "S1", "at": "2026-09-26T10:12:00Z", "details": { "batchId": "BAT-PE-01", "qty": 2 } },
+  { "action": "engagement", "key": "E-QT1", "type": "quote", "visitorId": "V-001", "slotKey": "S1", "at": "2026-09-26T10:15:00Z", "details": { "amount": 260000, "currency": "CNY", "item": "HB-120 整机" } },
+
+  { "action": "scan", "key": "SC2", "visitorId": "V-002", "machineId": "MCH-02", "at": "2026-09-26T10:06:00Z" },
+  { "action": "checkIn", "scanKey": "SC2", "slotKey": "S3", "at": "2026-09-26T10:07:00Z" },
+  { "action": "engagement", "key": "E-QA2", "type": "qa", "visitorId": "V-002", "slotKey": "S3", "at": "2026-09-26T10:10:00Z", "details": { "topic": "广口瓶瓶口精度", "answer": "型坯注射阶段保压曲线可调" } },
+
+  { "action": "safetyEvent", "key": "EV1", "machineId": "MCH-01", "type": "guard_open", "at": "2026-09-26T10:20:00Z", "detail": "演示中护罩被误开，联锁停机", "reportedBy": "OP-01" },
+  { "action": "recordInspection", "key": "INS-RE1", "machineId": "MCH-01", "inspectorId": "SAFE-01", "result": "passed", "checkedItems": ["护罩联锁", "急停按钮", "参数限值"], "at": "2026-09-26T10:38:00Z" },
+  { "action": "resumeSlot", "slotKey": "S1", "inspectionKey": "INS-RE1", "approvedBy": "ORG-01", "at": "2026-09-26T10:40:00Z" },
+  { "action": "resumeSlot", "slotKey": "S2", "inspectionKey": "INS-RE1", "approvedBy": "ORG-01", "at": "2026-09-26T10:41:00Z" },
+  { "action": "completeSlot", "slotKey": "S1", "at": "2026-09-26T10:45:00Z" },
+
+  { "action": "safetyEvent", "key": "EV2", "machineId": "MCH-02", "type": "param_out_of_range", "at": "2026-09-26T10:22:00Z", "detail": "熔体温度瞬时越上限，触发冻结", "reportedBy": "OP-02" },
+
+  { "action": "changeover", "machineId": "MCH-01", "by": "OP-01", "at": "2026-09-26T11:00:00Z", "addMaterialBatches": [{ "id": "BAT-PE-02", "material": "HDPE", "note": "20L 桶专用料" }], "addMolds": [{ "id": "MOLD-20L", "name": "20L 桶模" }], "removeMoldIds": ["MOLD-5L"] },
+  { "action": "recordInspection", "key": "INS-RE2", "machineId": "MCH-01", "inspectorId": "SAFE-01", "result": "passed", "checkedItems": ["模具安装", "护罩联锁", "参数限值"], "at": "2026-09-26T11:20:00Z" },
+  { "action": "requestSlot", "key": "S4", "machineId": "MCH-01", "operatorId": "OP-01", "start": "2026-09-26T11:30:00Z", "end": "2026-09-26T12:00:00Z", "plannedParams": { "barrelTempC": 195, "clampForceKN": 1100, "cycleTimeS": 40 }, "at": "2026-09-26T11:25:00Z" },
+  { "action": "approveSlot", "slotKey": "S4", "approvedBy": "ORG-01", "at": "2026-09-26T11:26:00Z" },
+
+  { "action": "scan", "key": "SC9", "visitorId": "V-009", "machineId": "MCH-01", "at": "2026-09-26T11:05:00Z" },
+
+  { "action": "lead", "visitorId": "V-001", "ownerId": "SALES-01", "consentedAt": "2026-09-26T11:40:00Z", "engagementKeys": ["E-QA1", "E-SP1", "E-QT1"], "note": "客户同意展后电话跟进" }
+]

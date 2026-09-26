@@ -1,0 +1,84 @@
+{
+  "exhibitors": [
+    { "id": "EXH-01", "name": "华塑机械（虚构）" },
+    { "id": "EXH-02", "name": "蓝岛中空装备（虚构）" }
+  ],
+  "machines": [
+    {
+      "id": "MCH-01",
+      "exhibitorId": "EXH-01",
+      "model": "HB-120 中空吹塑机",
+      "booth": "A-101",
+      "requiredQualification": "blow-molding",
+      "parameterRanges": {
+        "barrelTempC": { "min": 160, "max": 210 },
+        "clampForceKN": { "min": 800, "max": 1200 },
+        "cycleTimeS": { "min": 18, "max": 60 }
+      },
+      "materialBatches": [
+        { "id": "BAT-PE-01", "material": "HDPE", "note": "5L 中空桶专用料" }
+      ],
+      "molds": [
+        { "id": "MOLD-5L", "name": "5L 桶模" }
+      ],
+      "riskZones": [
+        { "id": "RZ-1", "name": "合模区", "level": "high" },
+        { "id": "RZ-2", "name": "料筒高温区", "level": "medium" }
+      ],
+      "operators": [
+        {
+          "id": "OP-01",
+          "name": "操作员甲（虚构）",
+          "qualifications": [
+            { "type": "blow-molding", "expiresAt": "2027-03-31T00:00:00Z" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MCH-02",
+      "exhibitorId": "EXH-02",
+      "model": "LD-90 注塑中空成型机",
+      "booth": "A-102",
+      "requiredQualification": "injection-blow",
+      "parameterRanges": {
+        "meltTempC": { "min": 180, "max": 240 },
+        "injectPressureMPa": { "min": 60, "max": 140 }
+      },
+      "materialBatches": [
+        { "id": "BAT-PP-01", "material": "PP", "note": "广口瓶专用料" }
+      ],
+      "molds": [
+        { "id": "MOLD-JAR", "name": "广口瓶模" }
+      ],
+      "riskZones": [
+        { "id": "RZ-3", "name": "射嘴区", "level": "high" }
+      ],
+      "operators": [
+        {
+          "id": "OP-02",
+          "name": "操作员乙（虚构）",
+          "qualifications": [
+            { "type": "injection-blow", "expiresAt": "2026-12-31T00:00:00Z" }
+          ]
+        }
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "machineId": "MCH-01",
+      "inspectorId": "SAFE-01",
+      "result": "passed",
+      "checkedItems": ["护罩联锁", "急停按钮", "参数限值"],
+      "at": "2026-09-26T08:30:00Z"
+    },
+    {
+      "machineId": "MCH-02",
+      "inspectorId": "SAFE-01",
+      "result": "passed",
+      "checkedItems": ["护罩联锁", "射嘴防护"],
+      "at": "2026-09-26T08:35:00Z"
+    }
+  ]
+}
