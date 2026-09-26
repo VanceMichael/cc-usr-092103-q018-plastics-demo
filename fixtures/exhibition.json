@@ -1,0 +1,638 @@
+{
+  "domain": "plastics-demo",
+  "version": 1,
+  "show": {
+    "name": "2026 华东橡塑机械展（虚构示例）",
+    "timezone": "+08:00",
+    "note": "全部人物、企业、设备与联系方式均为虚构，仅用于演示交接规则。"
+  },
+  "exhibitors": [
+    {
+      "id": "EX-HC",
+      "name": "海川智能装备（虚构）",
+      "booth": "A-101"
+    },
+    {
+      "id": "EX-ZY",
+      "name": "中元中空装备（虚构）",
+      "booth": "B-203"
+    }
+  ],
+  "operators": [
+    {
+      "id": "OP-01",
+      "name": "操作员甲（虚构）",
+      "certs": [
+        { "type": "injection-molding", "valid_until": "2027-06-30T00:00:00+08:00" }
+      ]
+    },
+    {
+      "id": "OP-02",
+      "name": "操作员乙（虚构）",
+      "certs": [
+        { "type": "blow-molding", "valid_until": "2027-03-31T00:00:00+08:00" }
+      ]
+    },
+    {
+      "id": "OP-03",
+      "name": "操作员丙（虚构）",
+      "certs": [
+        { "type": "injection-molding", "valid_until": "2026-06-30T00:00:00+08:00" }
+      ]
+    }
+  ],
+  "machines": [
+    {
+      "id": "M-260",
+      "exhibitor_id": "EX-HC",
+      "model": "HC-2600 注塑机",
+      "booth": "A-101",
+      "required_cert": "injection-molding",
+      "param_ranges": {
+        "barrel_temp_c": [180, 240],
+        "injection_pressure_mpa": [60, 140],
+        "clamp_force_kn": [800, 2600]
+      },
+      "material_batches": [
+        { "id": "B-1108", "material": "PP 粒料", "note": "首批样料" },
+        { "id": "B-1109", "material": "PP 粒料", "note": "午后换料批次" }
+      ],
+      "molds": [
+        { "id": "MD-01", "name": "收纳盒模具" },
+        { "id": "MD-02", "name": "中空瓶坯模具" }
+      ],
+      "risk_zones": [
+        { "id": "RZ-1", "name": "合模区", "level": "high" },
+        { "id": "RZ-2", "name": "射嘴高温区", "level": "high" }
+      ],
+      "inspections": [
+        {
+          "id": "INS-1",
+          "version": 1,
+          "at": "2026-09-26T08:10:00+08:00",
+          "result": "pass",
+          "covers": { "material_batch_id": "B-1108", "mold_id": "MD-01" },
+          "note": "开馆前安全检查"
+        }
+      ]
+    },
+    {
+      "id": "M-90",
+      "exhibitor_id": "EX-ZY",
+      "model": "ZY-90 中空吹塑机",
+      "booth": "B-203",
+      "required_cert": "blow-molding",
+      "param_ranges": {
+        "melt_temp_c": [160, 210],
+        "blow_pressure_mpa": [0.4, 0.8]
+      },
+      "material_batches": [
+        { "id": "B-2201", "material": "HDPE 粒料", "note": "中空产品样料" }
+      ],
+      "molds": [
+        { "id": "MD-11", "name": "5L 中空桶模具" }
+      ],
+      "risk_zones": [
+        { "id": "RZ-3", "name": "吹塑合模区", "level": "high" }
+      ],
+      "inspections": [
+        {
+          "id": "INS-2",
+          "version": 1,
+          "at": "2026-09-26T08:20:00+08:00",
+          "result": "pass",
+          "covers": { "material_batch_id": "B-2201", "mold_id": "MD-11" },
+          "note": "开馆前安全检查"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-09-26T08:40:00+08:00",
+      "type": "register_inspection",
+      "machine_id": "M-260",
+      "inspection": {
+        "id": "INS-4",
+        "version": 2,
+        "result": "pass",
+        "covers": { "material_batch_id": "B-1109", "mold_id": "MD-02" },
+        "note": "午后换料换模前预检"
+      }
+    },
+    {
+      "at": "2026-09-26T08:45:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-1",
+      "machine_id": "M-260",
+      "start": "2026-09-26T09:00:00+08:00",
+      "end": "2026-09-26T09:45:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:46:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-2",
+      "machine_id": "M-260",
+      "start": "2026-09-26T10:00:00+08:00",
+      "end": "2026-09-26T10:45:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:47:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-3",
+      "machine_id": "M-260",
+      "start": "2026-09-26T11:00:00+08:00",
+      "end": "2026-09-26T11:45:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:48:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-4",
+      "machine_id": "M-260",
+      "start": "2026-09-26T13:30:00+08:00",
+      "end": "2026-09-26T14:15:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1109",
+      "mold_id": "MD-02",
+      "inspection_id": "INS-4",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:50:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M2-1",
+      "machine_id": "M-90",
+      "start": "2026-09-26T09:30:00+08:00",
+      "end": "2026-09-26T10:15:00+08:00",
+      "operator_id": "OP-02",
+      "material_batch_id": "B-2201",
+      "mold_id": "MD-11",
+      "inspection_id": "INS-2",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:51:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M2-2",
+      "machine_id": "M-90",
+      "start": "2026-09-26T14:00:00+08:00",
+      "end": "2026-09-26T14:45:00+08:00",
+      "operator_id": "OP-02",
+      "material_batch_id": "B-2201",
+      "mold_id": "MD-11",
+      "inspection_id": "INS-2",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:55:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-X",
+      "machine_id": "M-260",
+      "start": "2026-09-26T09:30:00+08:00",
+      "end": "2026-09-26T10:15:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:56:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-Y",
+      "machine_id": "M-260",
+      "start": "2026-09-26T15:00:00+08:00",
+      "end": "2026-09-26T15:45:00+08:00",
+      "operator_id": "OP-03",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T08:57:00+08:00",
+      "type": "approve_slot",
+      "slot_id": "S-M1-Z",
+      "machine_id": "M-260",
+      "start": "2026-09-26T10:30:00+08:00",
+      "end": "2026-09-26T11:15:00+08:00",
+      "operator_id": "OP-01",
+      "material_batch_id": "B-1109",
+      "mold_id": "MD-02",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T09:05:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1001",
+      "session_id": "S-M1-1"
+    },
+    {
+      "at": "2026-09-26T09:06:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1001",
+      "session_id": "S-M1-1"
+    },
+    {
+      "at": "2026-09-26T09:07:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1002",
+      "session_id": "S-M1-1"
+    },
+    {
+      "at": "2026-09-26T09:08:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1003",
+      "session_id": "S-M1-1"
+    },
+    {
+      "at": "2026-09-26T09:10:00+08:00",
+      "type": "record_params",
+      "session_id": "S-M1-1",
+      "params": { "barrel_temp_c": 210, "injection_pressure_mpa": 110, "clamp_force_kn": 1800 }
+    },
+    {
+      "at": "2026-09-26T09:20:00+08:00",
+      "type": "record_qa",
+      "id": "QA-1",
+      "session_id": "S-M1-1",
+      "visitor_id": "V-1001",
+      "summary": "询问 HC-2600 能耗与换模时间"
+    },
+    {
+      "at": "2026-09-26T09:25:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-1",
+      "session_id": "S-M1-1",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01"
+    },
+    {
+      "at": "2026-09-26T09:30:00+08:00",
+      "type": "record_qa",
+      "id": "QA-2",
+      "session_id": "S-M1-1",
+      "visitor_id": "V-1002",
+      "summary": "围观客户询问射出压力范围"
+    },
+    {
+      "at": "2026-09-26T09:35:00+08:00",
+      "type": "record_quote",
+      "id": "Q-1",
+      "session_id": "S-M1-1",
+      "visitor_id": "V-1001",
+      "amount": 860000,
+      "currency": "CNY"
+    },
+    {
+      "at": "2026-09-26T09:40:00+08:00",
+      "type": "record_consent",
+      "visitor_id": "V-1001",
+      "exhibitor_id": "EX-HC",
+      "statement": "同意海川智能装备展后就注塑机报价进行跟进",
+      "channel": "纸质授权书"
+    },
+    {
+      "at": "2026-09-26T09:45:00+08:00",
+      "type": "complete_session",
+      "session_id": "S-M1-1"
+    },
+    {
+      "at": "2026-09-26T09:50:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-1",
+      "action": "handed_out",
+      "to_visitor_id": "V-1001",
+      "staff_id": "STAFF-01"
+    },
+    {
+      "at": "2026-09-26T10:05:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1004",
+      "session_id": "S-M1-2"
+    },
+    {
+      "at": "2026-09-26T10:10:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-2",
+      "session_id": "S-M1-2",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01"
+    },
+    {
+      "at": "2026-09-26T10:15:00+08:00",
+      "type": "record_params",
+      "session_id": "S-M1-2",
+      "params": { "barrel_temp_c": 262 }
+    },
+    {
+      "at": "2026-09-26T10:16:00+08:00",
+      "type": "resume_slot",
+      "session_id": "S-M1-2",
+      "inspection_id": "INS-1",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T10:20:00+08:00",
+      "type": "record_qa",
+      "id": "QA-3",
+      "session_id": "S-M1-2",
+      "visitor_id": "V-1004",
+      "summary": "冻结期间尝试登记技术问答"
+    },
+    {
+      "at": "2026-09-26T10:40:00+08:00",
+      "type": "register_inspection",
+      "machine_id": "M-260",
+      "inspection": {
+        "id": "INS-5",
+        "version": 3,
+        "result": "pass",
+        "covers": { "material_batch_id": "B-1108", "mold_id": "MD-01" },
+        "note": "越界停机后复检，温控回路已复位"
+      }
+    },
+    {
+      "at": "2026-09-26T10:45:00+08:00",
+      "type": "resume_slot",
+      "session_id": "S-M1-2",
+      "resumed_session_id": "S-M1-2-R1",
+      "start": "2026-09-26T10:45:00+08:00",
+      "end": "2026-09-26T10:58:00+08:00",
+      "inspection_id": "INS-5",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T10:50:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1004",
+      "session_id": "S-M1-2-R1"
+    },
+    {
+      "at": "2026-09-26T10:53:00+08:00",
+      "type": "record_qa",
+      "id": "QA-4",
+      "session_id": "S-M1-2-R1",
+      "visitor_id": "V-1004",
+      "summary": "恢复后询问 PP 料适用产品"
+    },
+    {
+      "at": "2026-09-26T10:56:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-3",
+      "session_id": "S-M1-2-R1",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01"
+    },
+    {
+      "at": "2026-09-26T11:00:00+08:00",
+      "type": "resume_slot",
+      "session_id": "S-M1-3",
+      "resumed_session_id": "S-M1-3-R1",
+      "start": "2026-09-26T11:00:00+08:00",
+      "inspection_id": "INS-5",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T11:05:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1005",
+      "session_id": "S-M1-3-R1"
+    },
+    {
+      "at": "2026-09-26T11:10:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-5",
+      "session_id": "S-M1-3-R1",
+      "material_batch_id": "B-1108",
+      "mold_id": "MD-01"
+    },
+    {
+      "at": "2026-09-26T11:20:00+08:00",
+      "type": "record_consent",
+      "visitor_id": "V-1004",
+      "exhibitor_id": "EX-HC",
+      "statement": "同意展后就 PP 样件与设备方案跟进",
+      "channel": "电子授权"
+    },
+    {
+      "at": "2026-09-26T10:58:00+08:00",
+      "type": "complete_session",
+      "session_id": "S-M1-2-R1"
+    },
+    {
+      "at": "2026-09-26T11:45:00+08:00",
+      "type": "complete_session",
+      "session_id": "S-M1-3-R1"
+    },
+    {
+      "at": "2026-09-26T11:50:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-2",
+      "action": "retained",
+      "staff_id": "STAFF-01"
+    },
+    {
+      "at": "2026-09-26T11:51:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-3",
+      "action": "handed_out",
+      "to_visitor_id": "V-1004",
+      "staff_id": "STAFF-01"
+    },
+    {
+      "at": "2026-09-26T11:52:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-5",
+      "action": "retained",
+      "staff_id": "STAFF-01"
+    },
+    {
+      "at": "2026-09-26T13:35:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1006",
+      "session_id": "S-M1-4"
+    },
+    {
+      "at": "2026-09-26T13:40:00+08:00",
+      "type": "record_params",
+      "session_id": "S-M1-4",
+      "params": { "barrel_temp_c": 205, "injection_pressure_mpa": 120 }
+    },
+    {
+      "at": "2026-09-26T13:50:00+08:00",
+      "type": "record_qa",
+      "id": "QA-5",
+      "session_id": "S-M1-4",
+      "visitor_id": "V-1006",
+      "summary": "询问瓶坯模具产能"
+    },
+    {
+      "at": "2026-09-26T13:55:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-4",
+      "session_id": "S-M1-4",
+      "material_batch_id": "B-1109",
+      "mold_id": "MD-02"
+    },
+    {
+      "at": "2026-09-26T14:15:00+08:00",
+      "type": "complete_session",
+      "session_id": "S-M1-4"
+    },
+    {
+      "at": "2026-09-26T14:20:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-4",
+      "action": "handed_out",
+      "to_visitor_id": "V-1006",
+      "staff_id": "STAFF-02"
+    },
+    {
+      "at": "2026-09-26T14:25:00+08:00",
+      "type": "record_consent",
+      "visitor_id": "V-1006",
+      "exhibitor_id": "EX-HC",
+      "statement": "同意展后就瓶坯产线方案跟进",
+      "channel": "电子授权"
+    },
+    {
+      "at": "2026-09-26T14:30:00+08:00",
+      "type": "produce_sample",
+      "id": "SMP-6",
+      "session_id": "S-M2-2",
+      "material_batch_id": "B-2201",
+      "mold_id": "MD-11"
+    },
+    {
+      "at": "2026-09-26T14:35:00+08:00",
+      "type": "guard_open",
+      "machine_id": "M-90",
+      "zone_id": "RZ-3"
+    },
+    {
+      "at": "2026-09-26T14:36:00+08:00",
+      "type": "resume_slot",
+      "session_id": "S-M2-2",
+      "inspection_id": "INS-2",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T15:05:00+08:00",
+      "type": "register_inspection",
+      "machine_id": "M-90",
+      "inspection": {
+        "id": "INS-6",
+        "version": 2,
+        "result": "pass",
+        "covers": { "material_batch_id": "B-2201", "mold_id": "MD-11" },
+        "note": "护罩复位后复检"
+      }
+    },
+    {
+      "at": "2026-09-26T15:10:00+08:00",
+      "type": "resume_slot",
+      "session_id": "S-M2-2",
+      "resumed_session_id": "S-M2-2-R1",
+      "start": "2026-09-26T15:10:00+08:00",
+      "end": "2026-09-26T15:30:00+08:00",
+      "inspection_id": "INS-6",
+      "approved_by": "organizer-1"
+    },
+    {
+      "at": "2026-09-26T15:20:00+08:00",
+      "type": "complete_session",
+      "session_id": "S-M2-2-R1"
+    },
+    {
+      "at": "2026-09-26T15:25:00+08:00",
+      "type": "dispose_sample",
+      "sample_id": "SMP-6",
+      "action": "retained",
+      "staff_id": "STAFF-02"
+    },
+    {
+      "at": "2026-09-26T15:30:00+08:00",
+      "type": "scan",
+      "visitor_id": "V-1007",
+      "session_id": "S-M2-1"
+    },
+    {
+      "at": "2026-09-26T15:35:00+08:00",
+      "type": "abnormal_stop",
+      "machine_id": "M-90",
+      "detail": "液压站压力异常，触发自动停机"
+    },
+    {
+      "at": "2026-09-26T15:40:00+08:00",
+      "type": "record_qa",
+      "id": "QA-6",
+      "session_id": "S-M2-1",
+      "visitor_id": "V-1007",
+      "summary": "闭馆后补录问答"
+    },
+    {
+      "at": "2026-09-26T17:05:00+08:00",
+      "type": "export",
+      "actor": "organizer-1",
+      "role": "organizer",
+      "kind": "reconciliation"
+    },
+    {
+      "at": "2026-09-26T17:06:00+08:00",
+      "type": "export",
+      "actor": "staff-hc",
+      "role": "exhibitor",
+      "exhibitor_id": "EX-HC",
+      "kind": "leads"
+    },
+    {
+      "at": "2026-09-26T17:07:00+08:00",
+      "type": "export",
+      "actor": "staff-hc",
+      "role": "exhibitor",
+      "exhibitor_id": "EX-HC",
+      "kind": "safety"
+    },
+    {
+      "at": "2026-09-26T17:08:00+08:00",
+      "type": "export",
+      "actor": "staff-hc",
+      "role": "exhibitor",
+      "exhibitor_id": "EX-HC",
+      "kind": "leads",
+      "for_exhibitor_id": "EX-ZY"
+    },
+    {
+      "at": "2026-09-26T17:09:00+08:00",
+      "type": "export",
+      "actor": "staff-zy",
+      "role": "exhibitor",
+      "exhibitor_id": "EX-ZY",
+      "kind": "reconciliation"
+    },
+    {
+      "at": "2026-09-26T17:10:00+08:00",
+      "type": "export",
+      "actor": "safety-1",
+      "role": "safety_officer",
+      "kind": "safety"
+    }
+  ]
+}
